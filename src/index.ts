@@ -17,7 +17,7 @@ const sub = new Redis(process.env.REDIS_URL);
 
 const wss = new WebSocketServer({ port: 8080 });
 
-const users: { [key: string]: import('ws').WebSocket } = {};
+const users: { [key: string]: any } = {};
 const rooms: { [key: string]: string[] } = {};
 
 const ROOMS_KEY = 'ws:rooms';
@@ -91,7 +91,7 @@ async function getMessageHistory(roomKey: string, limit = 100) {
   return messages.map(msg => JSON.parse(msg));
 }
 
-wss.on('connection', function connection(ws: import('ws').WebSocket) {
+wss.on('connection', function connection(ws) {
   let userId: string | null = null;
   const userRooms: string[] = [];
   
