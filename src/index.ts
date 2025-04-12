@@ -10,6 +10,7 @@ if (!process.env.REDIS_URL) {
   throw new Error('REDIS_URL is not defined in the environment variables');
 }
 
+console.log('Redis URL:', process.env.REDIS_URL);
 const redis = new Redis(process.env.REDIS_URL);
 const sub = new Redis(process.env.REDIS_URL);
 
